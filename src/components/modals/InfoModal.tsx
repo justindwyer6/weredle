@@ -75,11 +75,12 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                       <Cell value="P" />
                       <Cell value="I" />
                       <Cell value="L" status="present" />
-                      <Cell value="O" />
-                      <Cell value="T" />
+                      <Cell value="L" />
+                      <Cell value="S" />
                     </div>
                     <p className="text-sm text-gray-500">
-                      The letter L is in the word but in the wrong spot.
+                      The letter L is in the word (once), but in a different
+                      spot.
                     </p>
 
                     <div className="flex justify-center mb-1 mt-4">
@@ -91,6 +92,18 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                     </div>
                     <p className="text-sm text-gray-500">
                       The letter U is not in the word in any spot.
+                    </p>
+
+                    <div className="flex justify-center mb-1 mt-4">
+                      <Cell value="L" />
+                      <Cell value="I" status="present" isWerewolf={true} />
+                      <Cell value="A" />
+                      <Cell value="R" />
+                      <Cell value="S" />
+                    </div>
+                    <p className="text-sm text-gray-500">
+                      The second spot has been revealed as the Werewolf, so the
+                      letter I is either not in the word or in the wrong spot.
                     </p>
                   </div>
                 </div>
