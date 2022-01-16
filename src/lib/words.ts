@@ -13,16 +13,33 @@ export const isWinningWord = (word: string) => {
 };
 
 export const getWordOfDay = () => {
+  const getWerewolfTileIndex = (word: string) => {
+    const charCodeSum: number = word.split("").reduce((acc, char) => (acc || 0) + char.charCodeAt(0), 0);
+    // Algorithm from https://www.geeksforgeeks.org/finding-sum-of-digits-of-a-number-until-sum-becomes-single-digit/
+    return (
+      (
+        (charCodeSum === 0)
+        ? 0
+        : (charCodeSum % 9 === 0)
+        ? 9
+        : (charCodeSum % 9)
+      ) / 2
+    );
+  };
+
   // January 1, 2022 Game Epoch
   const epochMs = 1641013200000;
   const now = Date.now();
   const msInDay = 86400000;
-  const index = Math.floor((now - epochMs) / msInDay);
+  const solutionIndex = Math.floor((now - epochMs) / msInDay);
+  const solution = WORDS[solutionIndex].toUpperCase();
+  const werewolfTileIndex = getWerewolfTileIndex(solution)
 
   return {
-    solution: WORDS[index].toUpperCase(),
-    solutionIndex: index,
+    solution,
+    solutionIndex,
+    werewolfTileIndex
   };
 };
 
-export const { solution, solutionIndex } = getWordOfDay();
+export const { solution, solutionIndex, werewolfTileIndex } = getWordOfDay();

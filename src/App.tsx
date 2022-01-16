@@ -6,7 +6,12 @@ import { Keyboard } from "./components/keyboard/Keyboard";
 import { AboutModal } from "./components/modals/AboutModal";
 import { InfoModal } from "./components/modals/InfoModal";
 import { WinModal } from "./components/modals/WinModal";
-import { isWordInWordList, isWinningWord, solution } from "./lib/words";
+import {
+  isWordInWordList,
+  isWinningWord,
+  solution,
+  werewolfTileIndex,
+} from "./lib/words";
 import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
@@ -86,7 +91,7 @@ function App() {
         variant="success"
       />
       <div className="flex w-80 mx-auto items-center mb-8">
-        <h1 className="text-xl grow font-bold">Not Wordle</h1>
+        <h1 className="text-xl grow font-bold">Weredle</h1>
         <InformationCircleIcon
           className="h-6 w-6 cursor-pointer"
           onClick={() => setIsInfoModalOpen(true)}
@@ -127,6 +132,15 @@ function App() {
       >
         About this game
       </button>
+      {isGameWon ? (
+        <button
+          type="button"
+          className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          onClick={() => setIsWinModalOpen(true)}
+        >
+          Share
+        </button>
+      ) : null}
     </div>
   );
 }
