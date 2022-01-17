@@ -10,7 +10,7 @@ import {
   isWordInWordList,
   isWinningWord,
   solution,
-  werewolfTileIndex,
+  werewolfSolution,
 } from "./lib/words";
 import {
   loadGameStateFromLocalStorage,
@@ -23,6 +23,10 @@ function App() {
     return loaded?.solution === solution ? loaded.guesses : [];
   });
   const [currentGuess, setCurrentGuess] = useState("");
+  const [werewolfGuesses, setWerewolfGuesses] = useState<number[]>(() => {
+    const loaded = loadGameStateFromLocalStorage();
+    return loaded?.solution === solution ? loaded.werewolfGuesses : [];
+  });
   const [isGameWon, setIsGameWon] = useState(false);
   const [isWinModalOpen, setIsWinModalOpen] = useState(false);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
@@ -32,7 +36,12 @@ function App() {
   const [shareComplete, setShareComplete] = useState(false);
 
   useEffect(() => {
-    saveGameStateToLocalStorage({ guesses, solution });
+    saveGameStateToLocalStorage({
+      guesses,
+      werewolfGuesses,
+      solution,
+      werewolfSolution,
+    });
   }, [guesses]);
 
   useEffect(() => {
@@ -91,7 +100,7 @@ function App() {
         variant="success"
       />
       <div className="flex w-80 mx-auto items-center mb-8">
-        <h1 className="text-xl grow font-bold">Weredle</h1>
+        <h1 className="text-xl grow font-bold">🐺 Weredle</h1>
         <InformationCircleIcon
           className="h-6 w-6 cursor-pointer"
           onClick={() => setIsInfoModalOpen(true)}

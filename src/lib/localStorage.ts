@@ -3,6 +3,8 @@ const gameStateKey = "gameState";
 type StoredGameState = {
   guesses: string[];
   solution: string;
+  werewolfGuesses: number[];
+  werewolfSolution: number;
 };
 
 export const saveGameStateToLocalStorage = (gameState: StoredGameState) => {

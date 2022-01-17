@@ -13,7 +13,7 @@ export const isWinningWord = (word: string) => {
 };
 
 export const getWordOfDay = () => {
-  const getWerewolfTileIndex = (word: string) => {
+  const getWerewolfSolution = (word: string) => {
     const charCodeSum: number = word.split("").reduce((acc, char) => (acc || 0) + char.charCodeAt(0), 0);
     // Algorithm from https://www.geeksforgeeks.org/finding-sum-of-digits-of-a-number-until-sum-becomes-single-digit/
     return (
@@ -33,13 +33,13 @@ export const getWordOfDay = () => {
   const msInDay = 86400000;
   const solutionIndex = Math.floor((now - epochMs) / msInDay);
   const solution = WORDS[solutionIndex].toUpperCase();
-  const werewolfTileIndex = getWerewolfTileIndex(solution)
+  const werewolfSolution = getWerewolfSolution(solution)
 
   return {
     solution,
     solutionIndex,
-    werewolfTileIndex
+    werewolfSolution
   };
 };
 
-export const { solution, solutionIndex, werewolfTileIndex } = getWordOfDay();
+export const { solution, solutionIndex, werewolfSolution } = getWordOfDay();
