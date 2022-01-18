@@ -16,7 +16,7 @@ export const getWordOfDay = () => {
   const getWerewolfSolution = (word: string) => {
     const charCodeSum: number = word.split("").reduce((acc, char) => (acc || 0) + char.charCodeAt(0), 0);
     // Algorithm from https://www.geeksforgeeks.org/finding-sum-of-digits-of-a-number-until-sum-becomes-single-digit/
-    return (
+    return Math.floor(
       (
         (charCodeSum === 0)
         ? 0

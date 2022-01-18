@@ -59,24 +59,33 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                       of the tiles will change to show how close your guess was
                       to the word.
                     </p>
+                    <p className="text-sm text-gray-500">
+                      There is one "Werewolf" tile that will give you a false
+                      answer every time you guess. After your first word guess,
+                      you will also be able to click a tile to guess if it is
+                      the Werewolf. Once you find the Werewolf, there will be no
+                      new false tiles, and the previous false tiles you will be
+                      bordered in red. Continue to play as normal, but remember
+                      that the red-bordered tiles are still false.
+                    </p>
 
                     <div className="flex justify-center mb-1 mt-4">
-                      <Cell value="W" status="correct" />
-                      <Cell value="E" />
-                      <Cell value="A" />
-                      <Cell value="R" />
-                      <Cell value="Y" />
+                      <Cell letterIndex={0} value="W" status="correct" />
+                      <Cell letterIndex={0} value="E" />
+                      <Cell letterIndex={0} value="A" />
+                      <Cell letterIndex={0} value="R" />
+                      <Cell letterIndex={0} value="Y" />
                     </div>
                     <p className="text-sm text-gray-500">
                       The letter W is in the word and in the correct spot.
                     </p>
 
                     <div className="flex justify-center mb-1 mt-4">
-                      <Cell value="P" />
-                      <Cell value="I" />
-                      <Cell value="L" status="present" />
-                      <Cell value="L" />
-                      <Cell value="S" />
+                      <Cell letterIndex={0} value="P" />
+                      <Cell letterIndex={0} value="I" />
+                      <Cell letterIndex={0} value="L" status="present" />
+                      <Cell letterIndex={0} value="L" />
+                      <Cell letterIndex={0} value="S" />
                     </div>
                     <p className="text-sm text-gray-500">
                       The letter L is in the word (once), but in a different
@@ -84,26 +93,51 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                     </p>
 
                     <div className="flex justify-center mb-1 mt-4">
-                      <Cell value="V" />
-                      <Cell value="A" />
-                      <Cell value="G" />
-                      <Cell value="U" status="absent" />
-                      <Cell value="E" />
+                      <Cell letterIndex={0} value="V" />
+                      <Cell letterIndex={0} value="A" />
+                      <Cell letterIndex={0} value="G" />
+                      <Cell letterIndex={0} value="U" status="absent" />
+                      <Cell letterIndex={0} value="E" />
                     </div>
                     <p className="text-sm text-gray-500">
                       The letter U is not in the word in any spot.
                     </p>
 
                     <div className="flex justify-center mb-1 mt-4">
-                      <Cell value="L" />
-                      <Cell value="I" status="present" isWerewolf={true} />
-                      <Cell value="A" />
-                      <Cell value="R" />
-                      <Cell value="S" />
+                      <Cell letterIndex={0} value="L" status="absent" />
+                      <Cell
+                        letterIndex={0}
+                        value="I"
+                        rowType="completed"
+                        status="present"
+                        isWerewolf={true}
+                        isWerewolfGuess={true}
+                      />
+                      <Cell letterIndex={0} value="A" status="absent" />
+                      <Cell letterIndex={0} value="R" status="absent" />
+                      <Cell letterIndex={0} value="S" status="absent" />
                     </div>
                     <p className="text-sm text-gray-500">
-                      The second spot has been revealed as the Werewolf, so the
+                      The second tile has been revealed as the Werewolf, so the
                       letter I is either not in the word or in the wrong spot.
+                    </p>
+
+                    <div className="flex justify-center mb-1 mt-4">
+                      <Cell letterIndex={0} value="T" />
+                      <Cell letterIndex={0} value="R" status="present" />
+                      <Cell
+                        letterIndex={0}
+                        value="U"
+                        status="correct"
+                        isWerewolfGuess={true}
+                      />
+                      <Cell letterIndex={0} value="T" />
+                      <Cell letterIndex={0} value="H" />
+                    </div>
+                    <p className="text-sm text-gray-500">
+                      You already guessed the third tile and found out it wasn't
+                      the Werewolf, so you know for sure that U is in the right
+                      spot.
                     </p>
                   </div>
                 </div>
