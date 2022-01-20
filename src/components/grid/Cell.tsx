@@ -11,8 +11,7 @@ type Props = {
   isWerewolf?: boolean;
   isWerewolfGuess?: boolean;
   isWerewolfRevealed?: boolean;
-  lastWerewolfGuess?: number;
-  realWerewolfGuesses?: number[];
+  trimmedWerewolfGuesses?: number[];
   onClick?: (letterIndex: number) => void;
 };
 
@@ -25,8 +24,7 @@ export const Cell = ({
   isWerewolf,
   isWerewolfGuess,
   isWerewolfRevealed,
-  lastWerewolfGuess = -1,
-  realWerewolfGuesses,
+  trimmedWerewolfGuesses,
   onClick,
 }: Props) => {
   isWerewolf =
@@ -50,8 +48,8 @@ export const Cell = ({
         !!isWerewolf &&
         isWerewolf &&
         typeof rowNumber !== "undefined" &&
-        realWerewolfGuesses &&
-        rowNumber < realWerewolfGuesses?.length - 1,
+        trimmedWerewolfGuesses &&
+        rowNumber < trimmedWerewolfGuesses?.length - 1,
       "border-blue-700": !!isWerewolfGuess,
       "cursor-not-allowed": disabled,
       "hover:border-blue-300": !disabled,

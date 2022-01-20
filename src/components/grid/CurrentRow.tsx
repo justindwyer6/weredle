@@ -5,8 +5,7 @@ type Props = {
   guess: string;
   werewolfGuess?: number;
   isWerewolfRevealed?: boolean;
-  lastWerewolfGuess: number;
-  realWerewolfGuesses?: number[];
+  trimmedWerewolfGuesses?: number[];
   setCurrentWerewolfGuess: (letterIndex: number) => void;
 };
 
@@ -15,8 +14,7 @@ export const CurrentRow = ({
   guess,
   werewolfGuess,
   isWerewolfRevealed,
-  lastWerewolfGuess,
-  realWerewolfGuesses,
+  trimmedWerewolfGuesses,
   setCurrentWerewolfGuess,
 }: Props) => {
   const splitGuess = guess.split("");
@@ -33,8 +31,7 @@ export const CurrentRow = ({
           value={letter}
           isWerewolfRevealed={isWerewolfRevealed}
           isWerewolfGuess={werewolfGuess === i}
-          lastWerewolfGuess={lastWerewolfGuess}
-          realWerewolfGuesses={realWerewolfGuesses}
+          trimmedWerewolfGuesses={trimmedWerewolfGuesses}
           onClick={setCurrentWerewolfGuess}
         />
       ))}
@@ -49,8 +46,7 @@ export const CurrentRow = ({
             rowType="current"
             isWerewolfRevealed={isWerewolfRevealed}
             isWerewolfGuess={werewolfGuess === letterIndex}
-            lastWerewolfGuess={lastWerewolfGuess}
-            realWerewolfGuesses={realWerewolfGuesses}
+            trimmedWerewolfGuesses={trimmedWerewolfGuesses}
             onClick={setCurrentWerewolfGuess}
           />
         );

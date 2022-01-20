@@ -5,8 +5,7 @@ type Props = {
   rowNumber: number;
   guess: string;
   werewolfGuess?: number;
-  lastWerewolfGuess: number;
-  realWerewolfGuesses?: number[];
+  trimmedWerewolfGuesses?: number[];
   isWerewolfRevealed?: boolean;
 };
 
@@ -14,8 +13,7 @@ export const CompletedRow = ({
   rowNumber,
   guess,
   werewolfGuess,
-  lastWerewolfGuess,
-  realWerewolfGuesses,
+  trimmedWerewolfGuesses,
   isWerewolfRevealed,
 }: Props) => {
   const statuses = getGuessStatuses(guess);
@@ -32,8 +30,7 @@ export const CompletedRow = ({
           status={statuses[i]}
           isWerewolfGuess={werewolfGuess === i}
           isWerewolfRevealed={isWerewolfRevealed}
-          lastWerewolfGuess={lastWerewolfGuess}
-          realWerewolfGuesses={realWerewolfGuesses}
+          trimmedWerewolfGuesses={trimmedWerewolfGuesses}
         />
       ))}
     </div>

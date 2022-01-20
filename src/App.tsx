@@ -37,9 +37,10 @@ function App() {
     useState(false);
   const [isGameLost, setIsGameLost] = useState(false);
   const [shareComplete, setShareComplete] = useState(false);
-  const isWerewolfRevealed = werewolfGuesses.some(
-    (guess) => guess === werewolfSolution
-  );
+  const isWerewolfRevealed: boolean =
+    werewolfGuesses?.some(
+      (werewolfGuess: number) => werewolfGuess === werewolfSolution
+    ) || false;
 
   useEffect(() => {
     saveGameStateToLocalStorage({
@@ -67,7 +68,11 @@ function App() {
   };
 
   const onEnter = () => {
-    if (currentWerewolfGuess === -1 && !isWerewolfRevealed) {
+    if (
+      currentWerewolfGuess === -1 &&
+      !isWerewolfRevealed &&
+      werewolfGuesses.length > 0
+    ) {
       setIsWerewolfGuessedAlertOpen(true);
       return setTimeout(() => {
         setIsWerewolfGuessedAlertOpen(false);
@@ -130,6 +135,7 @@ function App() {
         currentGuess={currentGuess}
         currentWerewolfGuess={currentWerewolfGuess}
         werewolfGuesses={werewolfGuesses}
+        isWerewolfRevealed={isWerewolfRevealed}
         setCurrentWerewolfGuess={setCurrentWerewolfGuess}
       />
       <Keyboard

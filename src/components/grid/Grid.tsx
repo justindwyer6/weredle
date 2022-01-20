@@ -8,6 +8,7 @@ type Props = {
   currentGuess: string;
   currentWerewolfGuess: number;
   werewolfGuesses: number[];
+  isWerewolfRevealed: boolean;
   setCurrentWerewolfGuess: (letterIndex: number) => void;
 };
 
@@ -16,19 +17,12 @@ export const Grid = ({
   currentGuess,
   currentWerewolfGuess,
   werewolfGuesses,
+  isWerewolfRevealed,
   setCurrentWerewolfGuess,
 }: Props) => {
-  const isWerewolfRevealed: boolean =
-    werewolfGuesses?.some(
-      (werewolfGuess: number) => werewolfGuess === werewolfSolution
-    ) || false;
-
-  const realWerewolfGuesses: number[] = werewolfGuesses.filter(
+  const trimmedWerewolfGuesses: number[] = werewolfGuesses.filter(
     (guess) => guess !== -1
   );
-
-  const lastWerewolfGuess: number =
-    realWerewolfGuesses[realWerewolfGuesses.length - 1] || -1;
 
   const empties =
     guesses.length < 5 ? Array.from(Array(5 - guesses.length)) : [];
@@ -42,8 +36,7 @@ export const Grid = ({
           guess={guess}
           werewolfGuess={werewolfGuesses[i]}
           isWerewolfRevealed={isWerewolfRevealed}
-          lastWerewolfGuess={lastWerewolfGuess}
-          realWerewolfGuesses={realWerewolfGuesses}
+          trimmedWerewolfGuesses={trimmedWerewolfGuesses}
         />
       ))}
       {guesses.length < 6 && (
@@ -53,8 +46,7 @@ export const Grid = ({
           werewolfGuess={currentWerewolfGuess}
           isWerewolfRevealed={isWerewolfRevealed}
           setCurrentWerewolfGuess={setCurrentWerewolfGuess}
-          lastWerewolfGuess={lastWerewolfGuess}
-          realWerewolfGuesses={realWerewolfGuesses}
+          trimmedWerewolfGuesses={trimmedWerewolfGuesses}
         />
       )}
       {empties.map((_, i) => (
