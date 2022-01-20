@@ -111,7 +111,8 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                         rowType="completed"
                         status="present"
                         isWerewolf={true}
-                        isWerewolfGuess={true}
+                        rowNumber={5}
+                        trimmedWerewolfGuesses={[-1, 0, 1]}
                       />
                       <Cell letterIndex={0} value="A" status="absent" />
                       <Cell letterIndex={0} value="R" status="absent" />
@@ -119,11 +120,12 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                     </div>
                     <p className="text-sm text-gray-500">
                       The second tile has been revealed as the Werewolf, so the
-                      letter I is either not in the word or in the wrong spot.
+                      letter I is either not in the word or in the wrong spot
+                      (the keyboard will show the correct status).
                     </p>
 
                     <div className="flex justify-center mb-1 mt-4">
-                      <Cell letterIndex={0} value="T" />
+                      <Cell letterIndex={0} value="T" status="absent" />
                       <Cell letterIndex={0} value="R" status="present" />
                       <Cell
                         letterIndex={0}
@@ -131,8 +133,8 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                         status="correct"
                         isWerewolfGuess={true}
                       />
-                      <Cell letterIndex={0} value="T" />
-                      <Cell letterIndex={0} value="H" />
+                      <Cell letterIndex={0} value="T" status="absent" />
+                      <Cell letterIndex={0} value="H" status="absent" />
                     </div>
                     <p className="text-sm text-gray-500">
                       You already guessed the third tile and found out it wasn't

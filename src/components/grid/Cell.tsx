@@ -79,10 +79,7 @@ export const Cell = ({
         ? falseStatus === "present"
         : status === "present",
       "border-red-700":
-        !!isWerewolf &&
-        !isAfterWerewolfRevealed &&
-        !!isWerewolfRevealed &&
-        rowType === "completed",
+        !!isWerewolf && !isAfterWerewolfRevealed && rowType === "completed",
       "border-blue-700": !!isWerewolfGuess,
       "cursor-not-allowed": disabled,
       "hover:border-blue-300": !disabled,
