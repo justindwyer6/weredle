@@ -143,6 +143,7 @@ function App() {
         onDelete={onDelete}
         onEnter={onEnter}
         guesses={guesses}
+        isWerewolfRevealed={isWerewolfRevealed}
       />
       <WinModal
         isOpen={isWinModalOpen}

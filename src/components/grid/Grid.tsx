@@ -1,7 +1,6 @@
 import { CompletedRow } from "./CompletedRow";
 import { CurrentRow } from "./CurrentRow";
 import { EmptyRow } from "./EmptyRow";
-import { werewolfSolution } from "../../lib/words";
 
 type Props = {
   guesses: string[];
