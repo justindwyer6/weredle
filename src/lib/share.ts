@@ -24,7 +24,7 @@ export const generateEmojiGrid = (guesses: string[]) => {
         .split("")
         .map((letter, i) => {
           const werewolfGuessEmoji = werewolfGuesses[guessIndex] === werewolfSolution ? "🐺" : "🥸";
-          const showWerewolfGuess = i === 4 && werewolfGuesses[guessIndex] !== -1 && werewolfGuessEmoji || "";
+          const showWerewolfGuess = (i === 4 && werewolfGuesses[guessIndex] !== -1) ? werewolfGuessEmoji : "";
           switch (status[i]) {
             case "correct":
               return "🟩" + showWerewolfGuess;
