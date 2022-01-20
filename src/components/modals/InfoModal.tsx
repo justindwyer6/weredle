@@ -112,8 +112,9 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                         rowType="completed"
                         status="present"
                         isWerewolf={true}
-                        rowNumber={5}
-                        trimmedWerewolfGuesses={[-1, 0, 1]}
+                        isWerewolfRevealed={true}
+                        rowNumber={2}
+                        trimmedWerewolfGuesses={[-1, 0, 1, 2]}
                       />
                       <Cell letterIndex={0} value="A" status="absent" />
                       <Cell letterIndex={0} value="R" status="absent" />
