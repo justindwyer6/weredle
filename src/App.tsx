@@ -30,7 +30,7 @@ function App() {
   const [currentWerewolfGuess, setCurrentWerewolfGuess] = useState(-1);
   const [isGameWon, setIsGameWon] = useState(false);
   const [isWinModalOpen, setIsWinModalOpen] = useState(false);
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(!guesses.length);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false);
   const [isWerewolfGuessedAlertOpen, setIsWerewolfGuessedAlertOpen] =
