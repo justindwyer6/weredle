@@ -34,6 +34,7 @@ export const Cell = ({
       : isWerewolf;
 
   const isAfterWerewolfRevealed =
+    isWerewolfRevealed &&
     typeof rowNumber !== "undefined" &&
     typeof trimmedWerewolfGuesses !== "undefined" &&
     rowNumber >= trimmedWerewolfGuesses?.length;
@@ -42,7 +43,12 @@ export const Cell = ({
     rowType !== "current" || isWerewolfRevealed || rowNumber === 0;
 
   const falseStatus = (function () {
-    if (isWerewolf && !!value && !isAfterWerewolfRevealed) {
+    if (
+      isWerewolf &&
+      !!value &&
+      !isAfterWerewolfRevealed &&
+      rowType === "completed"
+    ) {
       const falseStatuses: CharStatus[] = [
         "present",
         "absent",
