@@ -41,7 +41,7 @@ export const Grid = ({
       ))}
       {guesses.length < 6 && (
         <CurrentRow
-          rowNumber={guesses.length - 1}
+          rowNumber={guesses.length}
           guess={currentGuess}
           werewolfGuess={currentWerewolfGuess}
           isWerewolfRevealed={isWerewolfRevealed}
