@@ -1,5 +1,7 @@
 import { getGuessStatuses } from "./statuses";
 import { solutionIndex } from "./words";
+import { loadGameStateFromLocalStorage } from "./localStorage";
+import { werewolfSolution } from "./words";
 
 export const shareStatus = (guesses: string[]) => {
   navigator.clipboard.writeText(
@@ -12,20 +14,24 @@ export const shareStatus = (guesses: string[]) => {
   );
 };
 
+const werewolfGuesses = loadGameStateFromLocalStorage()?.werewolfGuesses || [];
+
 export const generateEmojiGrid = (guesses: string[]) => {
   return guesses
-    .map((guess) => {
+    .map((guess, guessIndex) => {
       const status = getGuessStatuses(guess);
       return guess
         .split("")
         .map((letter, i) => {
+          const werewolfGuessEmoji = werewolfGuesses[guessIndex] === werewolfSolution ? "🐺" : "🥸";
+          const showWerewolfGuess = i === 4 && werewolfGuesses[guessIndex] !== -1 && werewolfGuessEmoji || "";
           switch (status[i]) {
             case "correct":
-              return "🟩";
+              return "🟩" + showWerewolfGuess;
             case "present":
-              return "🟨";
+              return "🟨" + showWerewolfGuess;
             default:
-              return "⬜";
+              return "⬜" + showWerewolfGuess;
           }
         })
         .join("");
