@@ -55,18 +55,19 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Guess the WORDLE in 6 tries. After each guess, the color
-                      of the tiles will change to show how close your guess was
-                      to the word.
+                      Guess the WEREDLE (like wear-dull) in 6 tries. After each
+                      guess, the color of the tiles will change to show how
+                      close your guess was to the word.
                     </p>
                     <p className="text-sm text-gray-500">
-                      There is one "Werewolf" tile that will give you a false
+                      There is one 🐺 Werewolf tile that will give you a false
                       answer every time you guess. After your first word guess,
-                      you will also be able to click a tile to guess if it is
-                      the Werewolf. Once you find the Werewolf, there will be no
-                      new false tiles, and the previous false tiles you will be
-                      bordered in red. Continue to play as normal, but remember
-                      that the red-bordered tiles are still false.
+                      you must click a tile to guess if it is the Werewolf. Once
+                      you find the Werewolf, there will be no new false tiles,
+                      the previous false tiles you will be bordered in red, and
+                      the keyboard will reveal the truth about the tiles you've
+                      guessed. Continue to play as normal, but remember that the
+                      red-bordered tiles are still false.
                     </p>
 
                     <div className="flex justify-center mb-1 mt-4">
