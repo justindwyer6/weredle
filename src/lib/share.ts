@@ -1,22 +1,20 @@
 import { getGuessStatuses } from "./statuses";
 import { solutionIndex } from "./words";
-import { loadGameStateFromLocalStorage } from "./localStorage";
 import { werewolfSolution } from "./words";
 
-export const shareStatus = (guesses: string[]) => {
+export const shareStatus = (guesses: string[], werewolfGuesses: number[]) => {
   navigator.clipboard.writeText(
-    "Wordle " +
-      solutionIndex +
-      " " +
-      guesses.length +
-      "/6\n\n" +
-      generateEmojiGrid(guesses)
+    "🐺 Weredle " +
+    solutionIndex +
+    " " +
+    guesses.length +
+    "/6\n\n" +
+    generateEmojiGrid(guesses, werewolfGuesses) +
+    "\n\nhttps://weredle.netlify.app/"
   );
 };
 
-const werewolfGuesses = loadGameStateFromLocalStorage()?.werewolfGuesses || [];
-
-export const generateEmojiGrid = (guesses: string[]) => {
+export const generateEmojiGrid = (guesses: string[], werewolfGuesses: number[]) => {
   return guesses
     .map((guess, guessIndex) => {
       const status = getGuessStatuses(guess);

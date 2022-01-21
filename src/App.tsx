@@ -28,7 +28,7 @@ function App() {
   });
   const [currentGuess, setCurrentGuess] = useState("");
   const [currentWerewolfGuess, setCurrentWerewolfGuess] = useState(-1);
-  const [isGameWon, setIsGameWon] = useState(false);
+  const [isGameWon, setIsGameWon] = useState(guesses.includes(solution));
   const [isWinModalOpen, setIsWinModalOpen] = useState(false);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(!guesses.length);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
@@ -149,6 +149,7 @@ function App() {
         isOpen={isWinModalOpen}
         handleClose={() => setIsWinModalOpen(false)}
         guesses={guesses}
+        werewolfGuesses={werewolfGuesses}
         handleShare={() => {
           setIsWinModalOpen(false);
           setShareComplete(true);
