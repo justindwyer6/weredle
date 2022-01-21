@@ -33,6 +33,9 @@ export const Cell = ({
       ? werewolfSolution === letterIndex
       : isWerewolf;
 
+  const hasColumnBeenGuessed: boolean =
+    trimmedWerewolfGuesses?.includes(letterIndex) || false;
+
   const isAfterWerewolfRevealed =
     isWerewolfRevealed &&
     typeof rowNumber !== "undefined" &&
@@ -40,7 +43,10 @@ export const Cell = ({
     rowNumber >= trimmedWerewolfGuesses?.length;
 
   const disabled: boolean | undefined =
-    rowType !== "current" || isWerewolfRevealed || rowNumber === 0;
+    rowType !== "current" ||
+    isWerewolfRevealed ||
+    rowNumber === 0 ||
+    hasColumnBeenGuessed;
 
   const falseStatus = (function () {
     if (
