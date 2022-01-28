@@ -24,14 +24,14 @@ export const Keyboard = ({
     isWerewolfRevealed ? charStatuses[char] : "";
 
   const onClick = (value: KeyValue) => {
-    if (value === "ENTER") {
-      onEnter();
-    } else if (value === "DELETE") {
-      onDelete();
+    if (value === 'ENTER') {
+      onEnter()
+    } else if (value === 'DELETE') {
+      onDelete()
     } else {
-      onChar(value);
+      onChar(value)
     }
-  };
+  }
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
@@ -45,12 +45,12 @@ export const Keyboard = ({
           onChar(key);
         }
       }
-    };
-    window.addEventListener("keyup", listener);
+    }
+    window.addEventListener('keyup', listener)
     return () => {
-      window.removeEventListener("keyup", listener);
-    };
-  }, [onEnter, onDelete, onChar]);
+      window.removeEventListener('keyup', listener)
+    }
+  }, [onEnter, onDelete, onChar])
 
   return (
     <div>
@@ -93,5 +93,5 @@ export const Keyboard = ({
         </Key>
       </div>
     </div>
-  );
-};
+  )
+}

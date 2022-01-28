@@ -21,3 +21,10 @@ $ cd weredle
 $ npm install
 $ npm run start
 ```
+
+_To build/run docker container:_
+```bash
+$ docker build -t weredle .
+$ docker run -d -p 3000:3000 weredle
+```
+open http://localhost:3000 in browser.

@@ -9,8 +9,7 @@ export const shareStatus = (guesses: string[], werewolfGuesses: number[]) => {
     " " +
     guesses.length +
     "/6\n\n" +
-    generateEmojiGrid(guesses, werewolfGuesses) +
-    "\n\nhttps://weredle.netlify.app/"
+    generateEmojiGrid(guesses, werewolfGuesses)
   );
 };
 
@@ -19,7 +18,7 @@ export const generateEmojiGrid = (guesses: string[], werewolfGuesses: number[]) 
     .map((guess, guessIndex) => {
       const status = getGuessStatuses(guess);
       return guess
-        .split("")
+        .split('')
         .map((letter, i) => {
           const werewolfGuessEmoji = werewolfGuesses[guessIndex] === werewolfSolution ? "🐺" : "🥸";
           const showWerewolfGuess = (i === 4 && werewolfGuesses[guessIndex] !== -1) ? werewolfGuessEmoji : "";
@@ -32,7 +31,7 @@ export const generateEmojiGrid = (guesses: string[], werewolfGuesses: number[]) 
               return "⬜" + showWerewolfGuess;
           }
         })
-        .join("");
+        .join('')
     })
-    .join("\n");
-};
+    .join('\n')
+}

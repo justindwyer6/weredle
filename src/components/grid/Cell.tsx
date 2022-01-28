@@ -72,7 +72,7 @@ export const Cell = ({
   })();
 
   const classes = classnames(
-    "w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded",
+    'w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded',
     {
       "bg-white border-slate-200": !status,
       "bg-slate-400 text-white border-slate-400": !!falseStatus
@@ -94,7 +94,7 @@ export const Cell = ({
       "hover:border-blue-300": !disabled,
       "hover:focus:border-blue-500": !disabled,
     }
-  );
+  )
 
   return (
     <>
@@ -110,5 +110,5 @@ export const Cell = ({
         {value}
       </button>
     </>
-  );
-};
+  )
+}

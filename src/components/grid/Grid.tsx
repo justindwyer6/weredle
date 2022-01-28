@@ -1,6 +1,6 @@
-import { CompletedRow } from "./CompletedRow";
-import { CurrentRow } from "./CurrentRow";
-import { EmptyRow } from "./EmptyRow";
+import { CompletedRow } from './CompletedRow'
+import { CurrentRow } from './CurrentRow'
+import { EmptyRow } from './EmptyRow'
 
 type Props = {
   guesses: string[];
@@ -24,7 +24,7 @@ export const Grid = ({
   );
 
   const empties =
-    guesses.length < 5 ? Array.from(Array(5 - guesses.length)) : [];
+    guesses.length < 5 ? Array.from(Array(5 - guesses.length)) : []
 
   return (
     <div className="pb-6">
@@ -52,5 +52,5 @@ export const Grid = ({
         <EmptyRow key={i} />
       ))}
     </div>
-  );
-};
+  )
+}

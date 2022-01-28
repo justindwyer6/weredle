@@ -1,4 +1,4 @@
-import { Cell } from "./Cell";
+import { Cell } from './Cell'
 
 type Props = {
   rowNumber: number;
@@ -52,5 +52,5 @@ export const CurrentRow = ({
         );
       })}
     </div>
-  );
-};
+  )
+}

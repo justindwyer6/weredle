@@ -12,31 +12,39 @@ import {
   solution,
   werewolfSolution,
 } from "./lib/words";
+import { ChartBarIcon } from '@heroicons/react/outline'
+import { StatsModal } from './components/modals/StatsModal'
+import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
-} from "./lib/localStorage";
+} from './lib/localStorage'
 
 function App() {
+  const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
+  const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
-    const loaded = loadGameStateFromLocalStorage();
-    return loaded?.solution === solution ? loaded.guesses : [];
-  });
-  const [werewolfGuesses, setWerewolfGuesses] = useState<number[]>(() => {
-    const loaded = loadGameStateFromLocalStorage();
-    return loaded?.solution === solution ? loaded.werewolfGuesses : [];
+    const gameState = loadGameStateFromLocalStorage();
+    return gameState?.solution === solution ? gameState.guesses : [];
   });
   const [currentGuess, setCurrentGuess] = useState("");
-  const [currentWerewolfGuess, setCurrentWerewolfGuess] = useState(-1);
   const [isGameWon, setIsGameWon] = useState(guesses.includes(solution));
   const [isWinModalOpen, setIsWinModalOpen] = useState(false);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(!guesses.length);
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false);
-  const [isWerewolfGuessedAlertOpen, setIsWerewolfGuessedAlertOpen] =
-    useState(false);
+  const [stats, setStats] = useState(() => loadStats())
   const [isGameLost, setIsGameLost] = useState(false);
   const [shareComplete, setShareComplete] = useState(false);
+
+  // Werewolf state
+  const [currentWerewolfGuess, setCurrentWerewolfGuess] = useState(-1);
+  const [werewolfGuesses, setWerewolfGuesses] = useState<number[]>(() => {
+    const gameState = loadGameStateFromLocalStorage();
+    return gameState?.solution === solution ? gameState.werewolfGuesses : [];
+  });
+  const [isWerewolfGuessedAlertOpen, setIsWerewolfGuessedAlertOpen] =
+  useState(false);
   const isWerewolfRevealed: boolean =
     werewolfGuesses?.some(
       (werewolfGuess: number) => werewolfGuess === werewolfSolution
@@ -53,19 +61,19 @@ function App() {
 
   useEffect(() => {
     if (isGameWon) {
-      setIsWinModalOpen(true);
+      setIsWinModalOpen(true)
     }
-  }, [isGameWon]);
+  }, [isGameWon])
 
   const onChar = (value: string) => {
     if (currentGuess.length < 5 && guesses.length < 6 && !isGameWon) {
       setCurrentGuess(`${currentGuess}${value}`);
     }
-  };
+  }
 
   const onDelete = () => {
-    setCurrentGuess(currentGuess.slice(0, -1));
-  };
+    setCurrentGuess(currentGuess.slice(0, -1))
+  }
 
   const onEnter = () => {
     if (
@@ -81,12 +89,21 @@ function App() {
 
     if (!isWordInWordList(currentGuess)) {
       setIsWordNotFoundAlertOpen(true);
+    if (!(currentGuess.length === 5)) {
+      setIsNotEnoughLetters(true)
       return setTimeout(() => {
-        setIsWordNotFoundAlertOpen(false);
-      }, 2000);
+        setIsNotEnoughLetters(false)
+      }, 2000)
     }
 
-    const winningWord = isWinningWord(currentGuess);
+    if (!isWordInWordList(currentGuess)) {
+      setIsWordNotFoundAlertOpen(true)
+      return setTimeout(() => {
+        setIsWordNotFoundAlertOpen(false)
+      }, 2000)
+    }
+
+    const winningWord = isWinningWord(currentGuess)
 
     if (currentGuess.length === 5 && guesses.length < 6 && !isGameWon) {
       setGuesses([...guesses, currentGuess]);
@@ -95,20 +112,23 @@ function App() {
       setCurrentWerewolfGuess(-1);
 
       if (winningWord) {
-        return setIsGameWon(true);
+        setStats(addStatsForCompletedGame(stats, guesses.length))
+        return setIsGameWon(true)
       }
 
       if (guesses.length === 5) {
-        setIsGameLost(true);
+        setStats(addStatsForCompletedGame(stats, guesses.length + 1))
+        setIsGameLost(true)
         return setTimeout(() => {
-          setIsGameLost(false);
-        }, 2000);
+          setIsGameLost(false)
+        }, 2000)
       }
     }
-  };
+  }
 
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <Alert message="Not enough letters" isOpen={isNotEnoughLetters} />
       <Alert message="Word not found" isOpen={isWordNotFoundAlertOpen} />
       <Alert
         message={`You lost, the word was ${solution}`}
@@ -128,6 +148,10 @@ function App() {
         <InformationCircleIcon
           className="h-6 w-6 cursor-pointer"
           onClick={() => setIsInfoModalOpen(true)}
+        />
+        <ChartBarIcon
+          className="h-6 w-6 cursor-pointer"
+          onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
       <Grid
@@ -151,16 +175,21 @@ function App() {
         guesses={guesses}
         werewolfGuesses={werewolfGuesses}
         handleShare={() => {
-          setIsWinModalOpen(false);
-          setShareComplete(true);
+          setIsWinModalOpen(false)
+          setShareComplete(true)
           return setTimeout(() => {
-            setShareComplete(false);
-          }, 2000);
+            setShareComplete(false)
+          }, 2000)
         }}
       />
       <InfoModal
         isOpen={isInfoModalOpen}
         handleClose={() => setIsInfoModalOpen(false)}
+      />
+      <StatsModal
+        isOpen={isStatsModalOpen}
+        handleClose={() => setIsStatsModalOpen(false)}
+        gameStats={stats}
       />
       <AboutModal
         isOpen={isAboutModalOpen}
@@ -184,7 +213,7 @@ function App() {
         </button>
       ) : null}
     </div>
-  );
-}
+  )
+}}
 
 export default App;
