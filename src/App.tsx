@@ -20,7 +20,7 @@ import {
   saveGameStateToLocalStorage,
 } from './lib/localStorage'
 
-function App() {
+const App = () => {
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
@@ -125,6 +125,7 @@ function App() {
       }
     }
   }
+}
 
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -213,7 +214,7 @@ function App() {
         </button>
       ) : null}
     </div>
-  )
-}}
+  );
+}
 
 export default App;
