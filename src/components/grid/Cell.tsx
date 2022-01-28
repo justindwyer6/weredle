@@ -75,6 +75,7 @@ export const Cell = ({
     'w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded',
     {
       "bg-white border-slate-200": !status,
+      'border-black': value && !status,
       "bg-slate-400 text-white border-slate-400": !!falseStatus
         ? falseStatus === "absent"
         : status === "absent",
@@ -93,6 +94,7 @@ export const Cell = ({
       "cursor-not-allowed": disabled,
       "hover:border-blue-300": !disabled,
       "hover:focus:border-blue-500": !disabled,
+      'cell-animation': !!value,
     }
   )
 

@@ -2,13 +2,9 @@ import { getGuessStatuses } from "./statuses";
 import { solutionIndex } from "./words";
 import { werewolfSolution } from "./words";
 
-export const shareStatus = (guesses: string[], werewolfGuesses: number[]) => {
+export const shareStatus = (guesses: string[], lost: boolean, werewolfGuesses: number[]) => {
   navigator.clipboard.writeText(
-    "🐺 Weredle " +
-    solutionIndex +
-    " " +
-    guesses.length +
-    "/6\n\n" +
+    `🐺 Weredle ${solutionIndex} ${lost ? 'X' : guesses.length}/6\n\n` +
     generateEmojiGrid(guesses, werewolfGuesses)
   );
 };

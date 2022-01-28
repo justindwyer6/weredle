@@ -20,18 +20,20 @@ export const getWordOfDay = () => {
   };
 
   // January 1, 2022 Game Epoch
-  const epochMs = 1641013200000;
+  const epochMs = new Date('January 1, 2022 00:00:00').valueOf()
   const now = Date.now();
   const msInDay = 86400000;
   const solutionIndex = Math.floor((now - epochMs) / msInDay);
+  const nextday = (solutionIndex + 1) * msInDay + epochMs
   const solution = WORDS[solutionIndex].toUpperCase();
   const werewolfSolution = getWerewolfSolution(solution)
 
   return {
-    solution,
+    solution: WORDS[solutionIndex % WORDS.length].toUpperCase(),
     solutionIndex,
+    tomorrow: nextday,
     werewolfSolution
   };
 };
 
-export const { solution, solutionIndex, werewolfSolution } = getWordOfDay();
+export const { solution, solutionIndex, tomorrow, werewolfSolution } = getWordOfDay();
