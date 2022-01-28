@@ -48,7 +48,7 @@ function App() {
   })
 
   const [stats, setStats] = useState(() => loadStats())
-  const [shareComplete, setShareComplete] = useState(false)
+  const [shareComplete] = useState(false)
 
   // Werewolf state
   const [currentWerewolfGuess, setCurrentWerewolfGuess] = useState(-1)
