@@ -87,8 +87,6 @@ const App = () => {
       }, 2000);
     }
 
-    if (!isWordInWordList(currentGuess)) {
-      setIsWordNotFoundAlertOpen(true);
     if (!(currentGuess.length === 5)) {
       setIsNotEnoughLetters(true)
       return setTimeout(() => {
@@ -125,7 +123,6 @@ const App = () => {
       }
     }
   }
-}
 
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -215,6 +212,6 @@ const App = () => {
       ) : null}
     </div>
   );
-}
+      }
 
 export default App;
