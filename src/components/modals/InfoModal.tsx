@@ -10,10 +10,6 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
     <BaseModal title="How to play" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500">
-        Guess the WORDLE in 6 tries. After each guess, the color of the tiles
-        will change to show how close your guess was to the word.
-      </p>
-      <p className="text-sm text-gray-500">
         Guess the WEREDLE (like wear-dull) in 6 tries. After each
         guess, the color of the tiles will change to show how
         close your guess was to the word.
@@ -22,7 +18,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       <p className="text-sm text-gray-500">
         There is one 🐺 Werewolf tile that may (or may not) give
         you a false answer every time you guess. After your first
-        word guess, you must click a tile to guess if it is the
+        guess, you must click a tile to guess if it is the
         Werewolf.
       </p>
       <br />
